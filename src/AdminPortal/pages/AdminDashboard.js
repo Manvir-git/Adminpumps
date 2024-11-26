@@ -7,7 +7,7 @@ import LogoutButton from './LogoutButton';
 import Feedbacks from './Feedbacks';
 
 const axiosInstance = axios.create({
-  baseURL: 'http://localhost:5001',
+  baseURL: 'https://pumpsbackend.onrender.com',
   headers: {
     'Authorization': `Bearer ${localStorage.getItem('token')}`
   }
@@ -83,7 +83,7 @@ const AdminPortal = () => {
   // Fetch residential pumps data
   useEffect(() => {
     axios
-      .get('http://localhost:5001/api/pumps')
+      .get('https://pumpsbackend.onrender.com/api/pumps')
       .then((response) => setResidentialPumps(response.data))
       .catch((error) => console.error('Error fetching residential pumps:', error));
   }, []);
@@ -91,7 +91,7 @@ const AdminPortal = () => {
   // Fetch agricultural pumps data
   useEffect(() => {
     axios
-      .get('http://localhost:5001/api/agpumps')
+      .get('https://pumpsbackend.onrender.com/api/agpumps')
       .then((response) => setAgriculturalPumps(response.data))
       .catch((error) => console.error('Error fetching agricultural pumps:', error));
   }, []);
@@ -170,8 +170,8 @@ const AdminPortal = () => {
   
     try {
       const endpoint = pumpType === 'residential' 
-        ? 'http://localhost:5001/api/pumps' 
-        : 'http://localhost:5001/api/agpumps';
+        ? 'https://pumpsbackend.onrender.com/api/pumps' 
+        : 'https://pumpsbackend.onrender.com/api/agpumps';
   
       const response = await axios.post(endpoint, formData, {
         headers: {
@@ -189,10 +189,10 @@ const AdminPortal = () => {
         ...newPump,
         image: newPump.image?.startsWith('http') 
           ? newPump.image 
-          : `http://localhost:5001${newPump.image}`,
+          : `https://pumpsbackend.onrender.com${newPump.image}`,
         rightImage: newPump.rightImage?.startsWith('http') 
           ? newPump.rightImage 
-          : `http://localhost:5001${newPump.rightImage}`
+          : `https://pumpsbackend.onrender.com${newPump.rightImage}`
       };
   
       if (pumpType === 'residential') {
@@ -240,8 +240,8 @@ const AdminPortal = () => {
     if (confirmDelete) {
       try {
         const endpoint = type === 'residential' 
-          ? `http://localhost:5001/api/pumps/${id}`
-          : `http://localhost:5001/api/agpumps/${id}`;
+          ? `https://pumpsbackend.onrender.com/api/pumps/${id}`
+          : `https://pumpsbackend.onrender.com/api/agpumps/${id}`;
   
         await axios.delete(endpoint);
   
@@ -433,7 +433,7 @@ const AdminPortal = () => {
       {residentialPumps.length > 0 ? (
         residentialPumps.map((pump) => (
           <div key={pump.id} className="pump-item animate-on-scroll">
-            <img src={`http://localhost:5001/uploads/${pump.image}`} alt={pump.name} className="pump-image" />
+            <img src={`https://pumpsbackend.onrender.com/uploads/${pump.image}`} alt={pump.name} className="pump-image" />
             <div className="pump-info">
               <p className="pump-name">{pump.name}</p>
               <p className="pump-price">{pump.price}</p>
@@ -471,7 +471,7 @@ const AdminPortal = () => {
       {agriculturalPumps.length > 0 ? (
         agriculturalPumps.map((pump) => (
           <div key={pump.id} className="pump-item animate-on-scroll">
-            <img src={`http://localhost:5001/uploads/${pump.image}`} alt={pump.name} className="pump-image" />
+            <img src={`https://pumpsbackend.onrender.com/uploads/${pump.image}`} alt={pump.name} className="pump-image" />
             <div className="pump-info">
               <p className="pump-name">{pump.name}</p>
               <p className="pump-price">{pump.price}</p>

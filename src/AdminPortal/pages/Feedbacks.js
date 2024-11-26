@@ -12,7 +12,7 @@ const Feedback = () => {
   // Fetch feedbacks
   useEffect(() => {
     axios
-      .get("http://localhost:5001/api/feedbacks")
+      .get("https://pumpsbackend.onrender.com/api/feedbacks")
       .then((response) => {
         setFeedback(response.data);
       })
@@ -35,7 +35,7 @@ const Feedback = () => {
     
     if (confirmDelete) {
       try {
-        await axios.delete(`http://localhost:5001/api/feedbacks/${id}`);
+        await axios.delete(`https://pumpsbackend.onrender.com/api/feedbacks/${id}`);
         setFeedback((prev) => prev.filter((item) => item._id !== id));
         alert('Feedback deleted successfully!');
       } catch (error) {

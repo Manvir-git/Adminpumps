@@ -15,7 +15,7 @@ const PumpDetail = () => {
 
     // Fetch the list of all pumps only once when the component mounts
     useEffect(() => {
-        axios.get('http://localhost:5001/api/pumps')
+        axios.get('https://pumpsbackend.onrender.com/api/pumps')
             .then(response => setPumps(response.data)) // Store the fetched pumps in state
             .catch(error => console.error('Error fetching pumps:', error));
     }, []); // Empty dependency array ensures this runs only once
@@ -26,7 +26,7 @@ const PumpDetail = () => {
             setLoading(true); // Set loading to true when fetching data
 
             // Fetch the current pump details
-            const response = await fetch(`http://localhost:5001/api/pumps/${pumpId}`);
+            const response = await fetch(`https://pumpsbackend.onrender.com/api/pumps/${pumpId}`);
             if (!response.ok) {
                 throw new Error('Pump not found');
             }
@@ -88,7 +88,7 @@ const PumpDetail = () => {
             <div className="product-description">
                 {/* Ensure image URL is correct */}
                 <img 
-                    src={`http://localhost:5001/uploads/${pump.image}`} 
+                    src={`https://pumpsbackend.onrender.com/uploads/${pump.image}`} 
                     className="product-image" 
                     alt={pump.name} 
                 />
@@ -117,7 +117,7 @@ const PumpDetail = () => {
             {/* Image for right view of the pump */}
             <div className="chart">
                 <img 
-                    src={`http://localhost:5001/uploads/${pump.rightImage}`} 
+                    src={`https://pumpsbackend.onrender.com/uploads/${pump.rightImage}`} 
                     alt="Right view of pump" 
                 />
             </div>

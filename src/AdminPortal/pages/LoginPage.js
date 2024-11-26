@@ -14,7 +14,7 @@ const Login = () => {
     setError('');
 
     try {
-        const response = await axios.post('http://localhost:5001/admin/login', {
+        const response = await axios.post('https://pumpsbackend.onrender.com/admin/login', {
           email,
           password
         });

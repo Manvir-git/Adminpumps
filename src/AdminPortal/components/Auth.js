@@ -25,7 +25,7 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (email, password) => {
     try {
-      const response = await fetch('http://localhost:5001/admin/login', {
+      const response = await fetch('https://pumpsbackend.onrender.com/admin/login', {
         method: 'POST',
         headers: { 
           'Content-Type': 'application/json',

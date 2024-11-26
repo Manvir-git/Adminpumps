@@ -11,7 +11,7 @@ const Enquiries = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5001/api/enqueries")
+      .get("https://pumpsbackend.onrender.com/api/enqueries")
       .then((response) => {
         setEnquiries(response.data);
       })
@@ -33,7 +33,7 @@ const Enquiries = () => {
     
     if (confirmDelete) {
       try {
-        await axios.delete(`http://localhost:5001/api/enqueries/${id}`);
+        await axios.delete(`https://pumpsbackend.onrender.com/api/enqueries/${id}`);
         setEnquiries(prev => prev.filter(enquiry => enquiry._id !== id));
         alert('Enquiry deleted successfully!');
       } catch (error) {

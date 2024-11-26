@@ -13,7 +13,7 @@ const PumpDetails = () => {
     const [pumps, setPumps] = useState([]);
 
     useEffect(() => {
-        axios.get('http://localhost:5001/api/agpumps')
+        axios.get('https://pumpsbackend.onrender.com/api/agpumps')
             .then(response => setPumps(response.data))
             .catch(error => console.error('Error fetching agricultural pumps:', error));
     }, []);
@@ -21,7 +21,7 @@ const PumpDetails = () => {
     useEffect(() => {
         const fetchPumpDetails = async () => {
             try {
-                const response = await fetch(`http://localhost:5001/api/agpumps/${pumpId}`);
+                const response = await fetch(`https://pumpsbackend.onrender.com/api/agpumps/${pumpId}`);
                 if (!response.ok) {
                     throw new Error('Agricultural pump not found');
                 }
@@ -74,7 +74,7 @@ const PumpDetails = () => {
             <div className='upper'><h1>{pump.name}</h1></div>
             <div className="product-description">
                 <img 
-                    src={`http://localhost:5001/uploads/${pump.image}`} 
+                    src={`https://pumpsbackend.onrender.com/uploads/${pump.image}`} 
                     className="product-image" 
                     alt={pump.name} 
                 />
@@ -101,7 +101,7 @@ const PumpDetails = () => {
             {/* Image for right view of the pump */}
             <div className="chart">
                 <img 
-                    src={`http://localhost:5001/uploads/${pump.rightImage}`} 
+                    src={`https://pumpsbackend.onrender.com/uploads/${pump.rightImage}`} 
                     alt="Right view of pump" 
                 />
                 
