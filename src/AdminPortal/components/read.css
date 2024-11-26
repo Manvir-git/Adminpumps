@@ -1,0 +1,188 @@
+.body {
+    background-color: #f8f8f8;
+    color: #333;
+    line-height: 1.6;
+}
+.upper h1{
+    text-align: center;
+}
+
+
+.back-button {
+    font-size: 20px;
+    margin: 20px 0 0 30px; /* Add margin: top 20px, left 30px */
+    background-color: #004c86;
+    color: white; /* Text color */
+    text-decoration: none; /* Remove underline */
+    font-weight: bold; /* Make text bold */
+    padding: 8px 50px; /* Increase padding for a wider button */
+    border-radius: 10%; /* Rounded corners */
+    cursor: pointer; /* Change cursor to pointer */
+    display: inline-block; /* Ensure button styling */
+    text-align: center; /* Center text in the button */
+    transition: background-color 0.3s ease; /* Smooth hover effect */
+    position: relative; /* For tooltip positioning */
+  }
+  
+  /* Hover Effect */
+  .back-button:hover {
+    background-color: #015ea5; /* Change background color */
+    color: white; /* Keep text white */
+  }
+  
+  /* Link Inside Button */
+  .back-button .link {
+    text-decoration: none; /* Remove underline for link text */
+    color: white; /* Match link color with button */
+    font-size: 16px; /* Adjust font size */
+    font-weight: bold;
+  }
+  
+  /* Tooltip Styling */
+  .back-button:hover::after {
+    content: "Click to move back to Admin portal"; /* Tooltip text */
+    position: absolute; /* Position next to the button */
+    top: 50%; /* Vertically align with the button */
+    left: calc(100% + 10px); /* Place the tooltip 10px to the right of the button */
+    transform: translateY(-50%); /* Center the tooltip vertically */
+    background-color: white; /* White background container */
+    color: #000; /* Black text color */
+    padding: 8px 15px; /* Tooltip padding for better readability */
+    border: 1px solid #ddd; /* Add a light border around the tooltip */
+    border-radius: 5px; /* Rounded corners for tooltip */
+    font-size: 14px; /* Adjust font size */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+    white-space: nowrap; /* Prevent text wrap */
+    z-index: 10; /* Ensure tooltip is above other elements */
+    opacity: 0; /* Initially hidden */
+    transition: opacity 0.3s ease; /* Smooth fade-in effect */
+  }
+  
+  /* Show Tooltip on Hover */
+  .back-button:hover::after {
+    opacity: 1; /* Make tooltip visible */
+  }
+  
+
+
+  
+
+.product-description {
+    margin: 20px;
+
+}
+
+.product-description h2 {
+   font-size: 1.4rem;
+
+}
+.product-image {
+    float: left;
+    margin-right: 20px;
+}
+.features {
+    font-size: 1.3rem;
+    margin-top: 10px; /* Reduce or remove the top margin */
+    margin-bottom: 0px; /* Remove the bottom margin to eliminate the gap */
+    padding: 0; /* Ensure no extra padding is applied */
+}
+
+.features ul {
+    margin-top: 0px; /* Remove the margin at the top of the list */
+    padding-left: 20px; /* Optional: Adjust the padding for bullet points */
+}
+
+
+.buy-button {
+    display: inline-block;
+    margin-top: 20px;
+    background-color: #004c86;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    margin-bottom: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.buy-button:hover {
+    background-color: #00ba19;
+    color: beige;
+}
+
+
+.chart {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    position: relative;
+    margin-top: 20px;
+    height:auto;
+
+}
+
+.chart img {
+    padding-bottom: 60px;
+    float: left;
+    width: 750px; /* Adjust this value to make the image smaller */
+    height: auto; /* Ensures the aspect ratio is maintained */
+}
+.product-description{
+    word-wrap: break-word;
+}
+
+.navigation-buttons {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 10px;
+    right: 10px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+
+.nav-btn {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    font-size: 24px;
+    background-color: #013164;
+    color: white;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 30%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.nav-btn:hover {
+    background-color: #0056b3;
+    opacity: 100%;
+}
+
+.left-btn {
+    margin-left: 10px;
+    left: 0;
+}
+
+.right-btn {
+    margin-right: 30px;
+    right: 0;
+}
+.chart {
+
+    bottom: 0;
+}
+
+.chart:right-image {
+    float: right;
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
