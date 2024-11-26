@@ -12,7 +12,7 @@ const LogoutButton = () => {
     localStorage.removeItem('user');
 
     // Redirect to login page
-    navigate('/login');
+    navigate('/');
   };
 
   return (
