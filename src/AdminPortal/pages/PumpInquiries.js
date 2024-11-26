@@ -92,7 +92,6 @@ const Enquiries = () => {
 
   return (
     <div style={styles.container}>
-      <h2>Enquiries</h2>
       
       {error && <p style={styles.error}>{error}</p>} {/* Display error message if there is any */}
 

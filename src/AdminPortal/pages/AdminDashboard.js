@@ -16,7 +16,7 @@ const axiosInstance = axios.create({
 const AdminPortal = () => {
   const [residentialPumps, setResidentialPumps] = useState([]);
   const [agriculturalPumps, setAgriculturalPumps] = useState([]);
-  const [enquiries, setEnquiries] = useState([]);  // Add state for enquiries
+  // const [enquiries, setEnquiries] = useState([]);  // Add state for enquiries
   const [error, setError] = useState(null);
   const [currentView, setCurrentView] = useState('residential');
   const [showAddForm, setShowAddForm] = useState(false);
@@ -78,7 +78,7 @@ const AdminPortal = () => {
     });
     clearInterval(tokenValidationInterval);
   };
-}, []);
+});
 
   // Fetch residential pumps data
   useEffect(() => {
@@ -97,25 +97,10 @@ const AdminPortal = () => {
   }, []);
 
   // Fetch enquiries data
-  useEffect(() => {
-    if (currentView === 'enquiries') {
-      axios
-        .get('http://localhost:5001/api/enqueries')
-        .then((response) => setEnquiries(response.data))
-        .catch((error) => console.error('Error fetching enqueries:', error));
-    }
-  }, [currentView]);
 
 
 //fetch feedbacks
-  useEffect(() => {
-    if (currentView === 'Feedbacks') {
-      axios
-        .get('http://localhost:5001/api/feedbacks')
-        .then((response) => setEnquiries(response.data))
-        .catch((error) => console.error('Error fetching feedbacks:', error));
-    }
-  }, [currentView]);
+ 
 
 
   // Handle multiple image upload
@@ -394,7 +379,13 @@ const AdminPortal = () => {
 
         {currentView === 'enquiries' && (
           <>
-            <Enquiries/> 
+          <div className='headings'> 
+          <div className='head'>
+          <h2>Enqueries</h2>
+          </div>
+          <Enquiries/> 
+          </div>
+            
             {/* {enquiries.map((enquiry, index) => (
   <div key={index} className="enquiry">
     <h3>Name: {enquiry.title}</h3>
@@ -417,7 +408,13 @@ const AdminPortal = () => {
         
         
         {currentView === 'Feedbacks' && (
+          <div className='headings'> 
+          <div className='head'>
+          <h2>Feedbacks</h2>
+          </div>
           <Feedbacks/>
+          </div>
+          
         )}
 
        

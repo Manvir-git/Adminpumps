@@ -89,7 +89,7 @@ const Feedback = () => {
 
   return (
     <div style={styles.container}>
-      <h2>Feedback</h2>
+
       {error && <p style={{ color: "red" }}>{error}</p>} {/* Show error message if there's an error */}
       
       {feedback.length > 0 ? (
