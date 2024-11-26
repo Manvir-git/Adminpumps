@@ -15,9 +15,13 @@ const Enquiries = () => {
       .then((response) => {
         setEnquiries(response.data);
       })
-      .catch((error) => console.error("Error fetching enqueries:", error));
+      .catch((error) => {
+        console.error("Error fetching enqueries:", error);
+        setError("Error fetching enqueries.");
+      });
   }, []);
 
+  // Toggle read/unread status for each enquiry
   const toggleReadStatus = (id) => {
     const updatedStatus = { ...readStatus, [id]: !readStatus[id] };
     setReadStatus(updatedStatus);
@@ -68,6 +72,11 @@ const Enquiries = () => {
       marginLeft: "10px",
       borderRadius: "4px",
     },
+    error: {
+      color: "red",
+      fontSize: "16px",
+      marginBottom: "20px",
+    },
     // Media queries for responsiveness
     "@media (max-width: 1024px)": {
       container: {
@@ -83,35 +92,50 @@ const Enquiries = () => {
 
   return (
     <div style={styles.container}>
-       <>
-            <h2>Enquiries</h2>
-            {enquiries.length > 0 ? (
-              enquiries.map((enquiry) => (
-                <div key={enquiry._id} className="enquiry">
-                  <h3>{enquiry.title}</h3>
-                  <p>Email: {enquiry.email}</p>
-                  <p>Mobile: {enquiry.mobile}</p>
-                  <p>City: {enquiry.city}</p>
-                  <p>Pincode: {enquiry.pincode}</p>
-                  <p>Country: {enquiry.country}</p>
-                  <p>Product Code: {enquiry.productCode}</p>
-                  <p>Product Name: {enquiry.productName}</p>
-                  <p>Company: {enquiry.company}</p>
-                  <p>State: {enquiry.state}</p>
-                  <p>Landline: {enquiry.landline}</p>
-                  <p>Description: {enquiry.description}</p>
-                  <button
-                    className="delete-btn"
-                    onClick={() => handleDeleteEnquiry(enquiry._id)}
-                  >
-                    Delete Enquiry
-                  </button>
-                </div>
-              ))
-            ) : (
-              <p>No enqueries found.</p>
-            )}
-          </>
+      <h2>Enquiries</h2>
+      
+      {error && <p style={styles.error}>{error}</p>} {/* Display error message if there is any */}
+
+      {enquiries.length > 0 ? (
+        enquiries.map((enquiry) => (
+          <div key={enquiry._id} style={styles.card} className="enquiry">
+            <h3>{enquiry.title}</h3>
+            <p>Email: {enquiry.email}</p>
+            <p>Mobile: {enquiry.mobile}</p>
+            <p>City: {enquiry.city}</p>
+            <p>Pincode: {enquiry.pincode}</p>
+            <p>Country: {enquiry.country}</p>
+            <p>Product Code: {enquiry.productCode}</p>
+            <p>Product Name: {enquiry.productName}</p>
+            <p>Company: {enquiry.company}</p>
+            <p>State: {enquiry.state}</p>
+            <p>Landline: {enquiry.landline}</p>
+            <p>Description: {enquiry.description}</p>
+
+            {/* Checkbox to mark as read/unread */}
+            <div style={styles.checkboxContainer}>
+              <label>
+                Mark as Read:
+                <input
+                  type="checkbox"
+                  checked={readStatus[enquiry._id] || false}
+                  onChange={() => toggleReadStatus(enquiry._id)}
+                />
+              </label>
+            </div>
+
+            {/* Button to delete enquiry */}
+            <button
+              style={styles.deleteButton}
+              onClick={() => handleDeleteEnquiry(enquiry._id)}
+            >
+              Delete Enquiry
+            </button>
+          </div>
+        ))
+      ) : (
+        <p>No enquiries found.</p>
+      )}
     </div>
   );
 };

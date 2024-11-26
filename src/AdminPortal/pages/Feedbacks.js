@@ -2,45 +2,52 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 const Feedback = () => {
-  const [Feedback, setFeedback] = useState([]);
+  const [feedback, setFeedback] = useState([]);
   const [error, setError] = useState(null);
   const [readStatus, setReadStatus] = useState(() => {
     const savedStatus = localStorage.getItem("readStatus");
     return savedStatus ? JSON.parse(savedStatus) : {};
   });
 
+  // Fetch feedbacks
   useEffect(() => {
     axios
       .get("http://localhost:5001/api/feedbacks")
       .then((response) => {
         setFeedback(response.data);
       })
-      .catch((error) => console.error("Error fetching feedbacks:", error));
+      .catch((error) => {
+        console.error("Error fetching feedbacks:", error);
+        setError("Error fetching feedbacks.");
+      });
   }, []);
 
+  // Toggle the read/unread status of feedback
   const toggleReadStatus = (id) => {
     const updatedStatus = { ...readStatus, [id]: !readStatus[id] };
     setReadStatus(updatedStatus);
     localStorage.setItem("readStatus", JSON.stringify(updatedStatus));
   };
 
+  // Handle feedback deletion
   const handleDeleteFeedback = async (id) => {
     const confirmDelete = window.confirm('Are you sure you want to delete this feedback?');
     
     if (confirmDelete) {
       try {
         await axios.delete(`http://localhost:5001/api/feedbacks/${id}`);
-        setFeedback(prev => prev.filter(Feedback => Feedback._id !== id));
+        setFeedback((prev) => prev.filter((item) => item._id !== id));
         alert('Feedback deleted successfully!');
       } catch (error) {
-        console.error('Error deleting Feedback:', error);
-        setError('Error deleting Feedback.');
+        console.error('Error deleting feedback:', error);
+        setError('Error deleting feedback.');
       }
     } else {
       console.log('Feedback deletion was canceled.');
     }
   };
 
+  // Inline styles for layout and responsiveness
   const styles = {
     container: {
       display: "grid",
@@ -68,7 +75,6 @@ const Feedback = () => {
       marginLeft: "10px",
       borderRadius: "4px",
     },
-    // Media queries for responsiveness
     "@media (max-width: 1024px)": {
       container: {
         gridTemplateColumns: "repeat(2, 1fr)",
@@ -83,28 +89,36 @@ const Feedback = () => {
 
   return (
     <div style={styles.container}>
-       <>
-            <h2>Feedback</h2>
-            {Feedback.length > 0 ? (
-              Feedback.map((Feedback) => (
-                <div key={Feedback._id} className="Feedback">
-                  <h3>{Feedback.name}</h3>
-                  <p>Email: {Feedback.email}</p>
-                  <p>Message: {Feedback.message}</p>
-                  
-                  
-                  <button
-                    className="delete-btn"
-                    onClick={() => handleDeleteFeedback(Feedback._id)}
-                  >
-                    Delete Feedback
-                  </button>
-                </div>
-              ))
-            ) : (
-              <p>No feedbacks found.</p>
-            )}
-          </>
+      <h2>Feedback</h2>
+      {error && <p style={{ color: "red" }}>{error}</p>} {/* Show error message if there's an error */}
+      
+      {feedback.length > 0 ? (
+        feedback.map((item) => (
+          <div key={item._id} style={styles.card}>
+            <h3>{item.name}</h3>
+            <p>Email: {item.email}</p>
+            <p>Message: {item.message}</p>
+            <div style={styles.checkboxContainer}>
+              <label>
+                Mark as Read:
+                <input
+                  type="checkbox"
+                  checked={readStatus[item._id] || false}
+                  onChange={() => toggleReadStatus(item._id)}
+                />
+              </label>
+            </div>
+            <button
+              style={styles.deleteButton}
+              onClick={() => handleDeleteFeedback(item._id)}
+            >
+              Delete Feedback
+            </button>
+          </div>
+        ))
+      ) : (
+        <p>No feedbacks found.</p>
+      )}
     </div>
   );
 };
