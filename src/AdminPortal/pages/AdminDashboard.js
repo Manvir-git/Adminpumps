@@ -67,7 +67,7 @@ const AdminPortal = () => {
       
       // Logout logic
       localStorage.removeItem('token');
-      window.location.href = '/login';
+      window.location.href = '/';
     }
   }, 5 * 60 * 1000); // Check every 5 minutes
 

@@ -10,7 +10,7 @@ function App() {
   return (
     <Router> {/* Wrap everything inside Router */}
       <Routes> {/* Use Routes to define all your routes */}
-        <Route path="/login" element={<Login />} />
+        <Route path="/" element={<Login />} />
         <Route 
           path="/dashboard" 
           element={
