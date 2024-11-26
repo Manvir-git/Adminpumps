@@ -84,7 +84,7 @@ import React from 'react';
 // import { AuthProvider } from './AdminPortal/components/Auth';
 // import ProtectedRoute from './AdminPortal/components/ProtectedRoute';
 // import AdminAuth from './AdminPortal/components/AdminAuth';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as  Routes, Route } from 'react-router-dom';
 import Login from './AdminPortal/pages/LoginPage';
 import PumpDetail from './AdminPortal/components/PumpDetail';
 import PumpDetails from './AdminPortal/components/PumpDetails';
